@@ -18,3 +18,7 @@ button{
     padding: .2rem .6rem;
     cursor: pointer;
 }
+
+.hidden{
+    display: none;
+}
