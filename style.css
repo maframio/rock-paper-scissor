@@ -7,18 +7,59 @@
 
 body{
     font-family: sans-serif;
+    min-height: 100vh;
+    background-color: #252525;
+    color: whitesmoke;
+
     margin-left: 1rem;
 }
 
 .buttons{
+    /* background-color: antiquewhite; */
+    /* width: 50%; */
     margin: 1rem 0;
+    display: flex;
+    gap: 1rem;
+
 }
 
 button{
-    padding: .2rem .6rem;
+    padding: .2rem;
     cursor: pointer;
+    border: none;
+    border-radius: 50%;
 }
+
+img{
+    background-color: #252525;
+    border-radius: 50%;
+    /* width: 8rem; */
+    display: block;
+    object-fit: contain;
+    
+}
+
+.reset{
+    background-color: whitesmoke;
+    color: black;
+    padding: .6rem .9rem;
+    margin: .8rem 0;
+    font-size: 1rem;
+    border-radius: 0%;
+}
+
+/* || CLASSES DINAMICAS */
 
 .hidden{
     display: none;
+}
+
+.ganhador{
+    margin: 1rem 0;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.score-text{
+    margin-top: 3rem;
 }

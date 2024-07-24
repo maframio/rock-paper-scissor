@@ -19,7 +19,7 @@ function resetScore(score){
 
     // zerando a pontuação no localStorage
     localStorage.setItem('score', JSON.stringify(score));
-    mudandoScoreTexto();
+    mudaScoreTexto();
     alert('The score are just reset\n' + showScore(score) );
 }
 
@@ -56,7 +56,10 @@ function mudaGanhador(ganhador){
 function mostraEscolhas(userEscolha, computerHand){
     const escolhasElement = document.querySelector('.escolhas');
 
-    escolhasElement.innerText = `You: ${userEscolha} - Computer: ${computerHand}`;
+    // verificando as escolhas para colocar a imagem correspondente
+
+    // escolhasElement.innerText = `You: ${userEscolha} - Computer: ${computerHand}`;
+    escolhasElement.innerHTML = `You: ${userEscolha} - Computer: ${computerHand}`;
     escolhasElement.classList.remove('hidden');
 }
 
@@ -133,10 +136,10 @@ buttons.addEventListener('click', (event)=>{
     // pegando o conteudo do botão que foi clicado
     userEscolha = event.target.textContent;
     
-    if(userEscolha === 'Reset Score'){
-        resetScore(score);
-        return;
-    }
+    // if(userEscolha === 'Reset Score'){
+    //     resetScore(score);
+    //     return;
+    // }
     // escolha do computador sempre que o um dos botões forem clicados
     let computerHand = selectComputerHand();
     console.log('computador: ' + computerHand);
@@ -147,6 +150,13 @@ buttons.addEventListener('click', (event)=>{
     vencendor(userEscolha, computerHand);
 });
 
+
+const reset = document.querySelector(".reset")
+reset.addEventListener('click', ()=>{
+    // console.log('hello world');
+    resetScore(score)
+
+});
 
 
 
