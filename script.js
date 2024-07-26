@@ -1,9 +1,13 @@
-handOps=["Rock","Paper","Scissors"]; 
+handOps=["rock","paper","scissors"]; 
 
 // função para escolher a "mão" do computador
 function selectComputerHand(){
     let randomIndex = Math.floor(Math.random() * handOps.length);   
     return handOps[randomIndex];
+}
+
+function selectUserHand(event){
+    return event.originalTarget.alt;// eu fiz mas não sei como
 }
 
 function showScore(score){
@@ -20,7 +24,13 @@ function resetScore(score){
     // zerando a pontuação no localStorage
     localStorage.setItem('score', JSON.stringify(score));
     mudaScoreTexto();
-    alert('The score are just reset\n' + showScore(score) );
+
+    // "escondendo as mãos das escolhas"
+    const escolhasElement = document.querySelector('.escolhas');
+    escolhasElement.classList.add('hidden');
+
+    // alert('The score are just reset\n' + showScore(score) );
+
 }
 
 function mudaScoreTexto(){
@@ -52,14 +62,18 @@ function mudaGanhador(ganhador){
     ganhadorElement.classList.remove('hidden');
 }
 
-
 function mostraEscolhas(userEscolha, computerHand){
     const escolhasElement = document.querySelector('.escolhas');
+    const userOp = document.querySelector('.userOp');
+    const computerOp = document.querySelector('.computerOp');
 
     // verificando as escolhas para colocar a imagem correspondente
 
     // escolhasElement.innerText = `You: ${userEscolha} - Computer: ${computerHand}`;
-    escolhasElement.innerHTML = `You: ${userEscolha} - Computer: ${computerHand}`;
+    // escolhasElement.innerHTML = `You: ${userEscolha} - Computer: ${computerHand}`;
+    userOp.src = `${userEscolha}.png`;
+    computerOp.src = `${computerHand}.png`;
+
     escolhasElement.classList.remove('hidden');
 }
 
@@ -80,9 +94,9 @@ function vencendor(userEscolha, computerHand){
         score.ties++;
         ganhador = "Tie";
         
-    } else if ((userEscolha ==='Rock' && computerHand === 'Scissors') 
-            || (userEscolha ==='Paper' && computerHand === 'Rock')
-            || (userEscolha ==='Scissors' && computerHand === 'Paper')){
+    } else if ((userEscolha ==='rock' && computerHand === 'scissors') 
+            || (userEscolha ==='paper' && computerHand === 'rock')
+            || (userEscolha ==='scissors' && computerHand === 'paper')){
                 
         mensagem ='You won';
         ganhador = 'user';
@@ -135,16 +149,13 @@ buttons.after(scoreElement);
 buttons.addEventListener('click', (event)=>{
     // pegando o conteudo do botão que foi clicado
     userEscolha = event.target.textContent;
-    
-    // if(userEscolha === 'Reset Score'){
-    //     resetScore(score);
-    //     return;
-    // }
+    userEscolha = selectUserHand(event);
+  
     // escolha do computador sempre que o um dos botões forem clicados
     let computerHand = selectComputerHand();
     console.log('computador: ' + computerHand);
 
-    console.log('usuario: '+userEscolha); 
+    console.log('usuario: ' + userEscolha); 
     
     // se qualquer outro botão for clicado que não o de Reset calculamos o vencedor
     vencendor(userEscolha, computerHand);
@@ -154,7 +165,7 @@ buttons.addEventListener('click', (event)=>{
 const reset = document.querySelector(".reset")
 reset.addEventListener('click', ()=>{
     // console.log('hello world');
-    resetScore(score)
+    resetScore(score);
 
 });
 

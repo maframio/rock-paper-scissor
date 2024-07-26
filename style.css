@@ -52,6 +52,13 @@ img{
 
 .hidden{
     display: none;
+    /* font-size: 2.5rem; */
+}
+
+.userOp, .computerOp{
+    width: 5rem;
+    display: inline-block;
+    margin-right: 2rem;
 }
 
 .ganhador{
