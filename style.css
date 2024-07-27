@@ -23,18 +23,20 @@ body{
 
 }
 
-button{
-    padding: .2rem;
+.buttons button{
+    /* padding: .2rem; */
     cursor: pointer;
-    border: none;
+    border: 3px solid whitesmoke;
     border-radius: 50%;
+    background-color: transparent;
+    margin-right:1.5rem ;
+    
 }
 
-img{
+.hand{
     background-color: #252525;
     border-radius: 50%;
-    /* width: 8rem; */
-    display: block;
+    /* text-align: center; */
     object-fit: contain;
     
 }
@@ -46,6 +48,7 @@ img{
     margin: .8rem 0;
     font-size: 1rem;
     border-radius: 0%;
+    cursor: pointer;
 }
 
 /* || CLASSES DINAMICAS */

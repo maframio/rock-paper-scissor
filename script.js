@@ -17,13 +17,15 @@ function showScore(score){
 }
 
 function resetScore(score){
+    // let score = JSON.parse(localStorage.getItem('score'));
+
     score.wins = 0;
     score.losses = 0;
     score.ties = 0;
 
     // zerando a pontuação no localStorage
     localStorage.setItem('score', JSON.stringify(score));
-    mudaScoreTexto();
+    mudaScoreTexto(score);
 
     // "escondendo as mãos das escolhas"
     const escolhasElement = document.querySelector('.escolhas');
@@ -71,8 +73,8 @@ function mostraEscolhas(userEscolha, computerHand){
 
     // escolhasElement.innerText = `You: ${userEscolha} - Computer: ${computerHand}`;
     // escolhasElement.innerHTML = `You: ${userEscolha} - Computer: ${computerHand}`;
-    userOp.src = `${userEscolha}.png`;
-    computerOp.src = `${computerHand}.png`;
+    userOp.src = `images/${userEscolha}.png`;
+    computerOp.src = `images/${computerHand}.png`;
 
     escolhasElement.classList.remove('hidden');
 }
@@ -83,9 +85,6 @@ function vencendor(userEscolha, computerHand, score){
         tesoura GANHA papel
         papel   GANHA pedra
     */
-
-   // recuperando a pontução do localStorage
-//    score = JSON.parse(localStorage.getItem('score'));
    
    let mensagem;
    let ganhador;
@@ -126,7 +125,6 @@ function vencendor(userEscolha, computerHand, score){
 // cria um objeto se não existir um no localStorage
 let score = JSON.parse(localStorage.getItem('score')) || { wins: 0, losses: 0, ties: 0 };
 
-
 // obtendo a escolha do usuário
 const buttons = document.querySelector('.buttons');
 let userEscolha;
@@ -134,9 +132,6 @@ let userEscolha;
 // adicionando a pontuação na página
 const scoreElement = document.createElement("p");
 scoreElement.className ="score-text"; // adicionando uma classe ao parágrafo de pontuação
-
- // recuperando a pontução do localStorage
-//  score = JSON.parse(localStorage.getItem('score'));
 
 // transformando a string da pontuação em um elemento do dom
 const scoreText = document.createTextNode(showScore(score));
@@ -163,6 +158,7 @@ buttons.addEventListener('click', (event)=>{
 const reset = document.querySelector(".reset")
 reset.addEventListener('click', ()=>{
     // console.log('hello world');
+    let score = JSON.parse(localStorage.getItem('score'));
     resetScore(score);
 
 });
