@@ -11,13 +11,11 @@ function selectUserHand(event){
 }
 
 function showScore(score){
-    // score = JSON.parse(localStorage.getItem('score'));
     let gameScore = `Wins: ${score.wins}; Losses: ${score.losses}; Ties: ${score.ties}`;
     return gameScore;
 }
 
 function resetScore(score){
-    // let score = JSON.parse(localStorage.getItem('score'));
 
     score.wins = 0;
     score.losses = 0;
@@ -31,19 +29,12 @@ function resetScore(score){
     const escolhasElement = document.querySelector('.escolhas');
     escolhasElement.classList.add('hidden');
 
-    // alert('The score are just reset\n' + showScore(score) );
-
 }
 
 function mudaScoreTexto(score){
-    // recuperando a pontução do localStorage
-    // score = JSON.parse(localStorage.getItem('score'));
-
     const scoreElement = document.querySelector(".score-text");
   
     if(scoreElement.hasChildNodes()){
-        // replace
-        // document.replaceChild(newScoreText, scoreElement.children);
         scoreElement.innerText = showScore(score);
         // console.log(scoreElement);
     }
@@ -69,10 +60,6 @@ function mostraEscolhas(userEscolha, computerHand){
     const userOp = document.querySelector('.userOp');
     const computerOp = document.querySelector('.computerOp');
 
-    // verificando as escolhas para colocar a imagem correspondente
-
-    // escolhasElement.innerText = `You: ${userEscolha} - Computer: ${computerHand}`;
-    // escolhasElement.innerHTML = `You: ${userEscolha} - Computer: ${computerHand}`;
     userOp.src = `images/${userEscolha}.png`;
     computerOp.src = `images/${computerHand}.png`;
 
@@ -116,9 +103,6 @@ function vencendor(userEscolha, computerHand, score){
     mostraEscolhas(userEscolha, computerHand);
 
     mudaScoreTexto(score);
-        
-    // imprimindo a mensagem de quem ganhor
-    // alert(`You got ${userEscolha}. ${mensagem}\n ${showScore(score)}`);
     
 }
 
@@ -140,8 +124,6 @@ scoreElement.appendChild(scoreText);
 buttons.after(scoreElement);
 
 buttons.addEventListener('click', (event)=>{
-    // pegando o conteudo do botão que foi clicado
-    userEscolha = event.target.textContent;
     userEscolha = selectUserHand(event);
   
     // escolha do computador sempre que o um dos botões forem clicados
@@ -157,8 +139,6 @@ buttons.addEventListener('click', (event)=>{
 
 const reset = document.querySelector(".reset")
 reset.addEventListener('click', ()=>{
-    // console.log('hello world');
-    // let score = JSON.parse(localStorage.getItem('score'));
     resetScore(score);
 
 });
