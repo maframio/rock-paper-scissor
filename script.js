@@ -158,7 +158,7 @@ buttons.addEventListener('click', (event)=>{
 const reset = document.querySelector(".reset")
 reset.addEventListener('click', ()=>{
     // console.log('hello world');
-    let score = JSON.parse(localStorage.getItem('score'));
+    // let score = JSON.parse(localStorage.getItem('score'));
     resetScore(score);
 
 });
