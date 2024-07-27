@@ -11,7 +11,7 @@ function selectUserHand(event){
 }
 
 function showScore(score){
-    score = JSON.parse(localStorage.getItem('score'));
+    // score = JSON.parse(localStorage.getItem('score'));
     let gameScore = `Wins: ${score.wins}; Losses: ${score.losses}; Ties: ${score.ties}`;
     return gameScore;
 }
@@ -33,9 +33,9 @@ function resetScore(score){
 
 }
 
-function mudaScoreTexto(){
+function mudaScoreTexto(score){
     // recuperando a pontução do localStorage
-    score = JSON.parse(localStorage.getItem('score'));
+    // score = JSON.parse(localStorage.getItem('score'));
 
     const scoreElement = document.querySelector(".score-text");
   
@@ -78,14 +78,14 @@ function mostraEscolhas(userEscolha, computerHand){
 }
 
 // verificando que ganhou
-function vencendor(userEscolha, computerHand){
+function vencendor(userEscolha, computerHand, score){
     /*  pedra GANHA tesoura
         tesoura GANHA papel
         papel   GANHA pedra
     */
 
    // recuperando a pontução do localStorage
-   score = JSON.parse(localStorage.getItem('score'));
+//    score = JSON.parse(localStorage.getItem('score'));
    
    let mensagem;
    let ganhador;
@@ -116,21 +116,16 @@ function vencendor(userEscolha, computerHand){
     // mostra escolhas
     mostraEscolhas(userEscolha, computerHand);
 
-    mudaScoreTexto();
+    mudaScoreTexto(score);
         
     // imprimindo a mensagem de quem ganhor
     // alert(`You got ${userEscolha}. ${mensagem}\n ${showScore(score)}`);
     
 }
 
+// cria um objeto se não existir um no localStorage
+let score = JSON.parse(localStorage.getItem('score')) || { wins: 0, losses: 0, ties: 0 };
 
-
-// objeto Score que vai guardar a pontução
-let score = {
-    wins: 0,
-    losses: 0,
-    ties:0
-};
 
 // obtendo a escolha do usuário
 const buttons = document.querySelector('.buttons');
@@ -139,6 +134,9 @@ let userEscolha;
 // adicionando a pontuação na página
 const scoreElement = document.createElement("p");
 scoreElement.className ="score-text"; // adicionando uma classe ao parágrafo de pontuação
+
+ // recuperando a pontução do localStorage
+//  score = JSON.parse(localStorage.getItem('score'));
 
 // transformando a string da pontuação em um elemento do dom
 const scoreText = document.createTextNode(showScore(score));
@@ -158,7 +156,7 @@ buttons.addEventListener('click', (event)=>{
     console.log('usuario: ' + userEscolha); 
     
     // se qualquer outro botão for clicado que não o de Reset calculamos o vencedor
-    vencendor(userEscolha, computerHand);
+    vencendor(userEscolha, computerHand, score);
 });
 
 
